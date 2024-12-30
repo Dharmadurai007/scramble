@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scramble Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="home-page" class="page active"> 
+        <h1>Scramble Game</h1>
+        <div class="level-panel">
+            <button class="level-btn" onclick="loadLevel(1)">Level 1</button>
+            <button class="level-btn" onclick="loadLevel(2)">Level 2</button>
+        </div>
+    </div>
+    
+
+    <div id="level-page" class="page hidden">
+        <div class="navigation">
+            <button onclick="goHome()">Home</button>
+            <button onclick="exitGame()">Exit</button>
+            <button onclick="nextLevel()">Next</button>
+            <button onclick="goBack()">Back</button>
+        </div>
+        <div class="content">
+            <h2 id="sentence">Meaningful Sentence or Slogan</h2>
+            <div class="words">
+                <div class="word-row">
+                    <span class="jumbled-word" id="jumbled-word-1"></span>
+                    <input type="text" id="input-word-1">
+                </div>
+                <div class="word-row">
+                    <span class="jumbled-word" id="jumbled-word-2"></span>
+                    <input type="text" id="input-word-2">
+                </div>
+                <div class="word-row">
+                    <span class="jumbled-word" id="jumbled-word-3"></span>
+                    <input type="text" id="input-word-3">
+                </div>
+                <div class="word-row">
+                    <span class="jumbled-word" id="jumbled-word-4"></span>
+                    <input type="text" id="input-word-4">
+                </div>
+            </div>
+        </div>
+        <div>
+            <button style="height: 50px; width: 70px; margin-top: 10px; margin-left: 15px;" onclick="goSubmit()">Submit</button>
+        </div>
+    </div>
+
+    <script src="./script.js">
+        
+
+
+    </script>
+</body>
+</html>
