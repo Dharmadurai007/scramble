@@ -10,13 +10,31 @@
     <div id="home-page" class="page active"> 
         <h1>Scramble Game</h1>
         <div class="level-panel">
+            <button class="level-btn" onclick="Tamil()">தமிழ்</button>
+            <button class="level-btn" onclick="English()">English</button>
+        </div>
+    </div>
+
+    <div id="english-level-page"  class="page hidden"> 
+        <h1>Scramble Game</h1>
+        <div class="level-panel">
             <button class="level-btn" onclick="loadLevel(1)">Level 1</button>
             <button class="level-btn" onclick="loadLevel(2)">Level 2</button>
+            <button class="level-btn" onclick="goHome()">Home</button>
+        </div>
+    </div>
+
+    <div id="tamil-level-page" class="page hidden"> 
+        <h1>எழுத்துப்பட்டுவாடா</h1>
+        <div class="level-panel">
+            <button class="level-btn" onclick="loadLevel(1)">நிலை 1</button>
+            <button class="level-btn" onclick="loadLevel(2)">நிலை 2</button>
+            <button class="level-btn" onclick="goHome()">வீடு</button>
         </div>
     </div>
     
 
-    <div id="level-page" class="page hidden">
+    <div id="english-level-inside-page" class="page hidden">
         <div class="navigation">
             <button onclick="goHome()">Home</button>
             <button onclick="exitGame()">Exit</button>
@@ -46,6 +64,39 @@
         </div>
         <div>
             <button style="height: 50px; width: 70px; margin-top: 10px; margin-left: 15px;" onclick="goSubmit()">Submit</button>
+        </div>
+    </div>
+
+    <div id="tamil-level-inside-page" class="page hidden">
+        <div class="navigation">
+            <button onclick="goHome()">வீடு</button>
+            <button onclick="exitGame()">வெளியேறு</button>
+            <button onclick="nextLevel()">அடுத்து</button>
+            <button onclick="goBack()">பின்</button>
+        </div>
+        <div class="content">
+            <h2 id="sentencex">Meaningful Sentence or Slogan</h2>
+            <div class="words">
+                <div class="word-row">
+                    <span class="jumbled-word" id="jumbled-wordx-1"></span>
+                    <input type="text" id="input-wordx-1">
+                </div>
+                <div class="word-row">
+                    <span class="jumbled-word" id="jumbled-wordx-2"></span>
+                    <input type="text" id="input-wordx-2">
+                </div>
+                <div class="word-row">
+                    <span class="jumbled-word" id="jumbled-wordx-3"></span>
+                    <input type="text" id="input-wordx-3">
+                </div>
+                <div class="word-row">
+                    <span class="jumbled-word" id="jumbled-wordx-4"></span>
+                    <input type="text" id="input-wordx-4">
+                </div>
+            </div>
+        </div>
+        <div>
+            <button style="height: 50px; width: 120px; margin-top: 10px; margin-left: 65px;" onclick="goSubmit()">சமர்ப்பிக்கவும்</button>
         </div>
     </div>
 
