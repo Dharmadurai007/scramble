@@ -15,88 +15,66 @@
         </div>
     </div>
 
-    <div id="english-level-page"  class="page hidden"> 
+    <div id="english-level-page"  class="hidden-elem"> 
         <h1>Scramble Game</h1>
         <div class="level-panel">
-            <button class="level-btn" onclick="loadLevel(1)">Level 1</button>
-            <button class="level-btn" onclick="loadLevel(2)">Level 2</button>
+            <button class="level-btn" onclick="loadLevel(1,'english')">Level 1</button>
+            <button class="level-btn" onclick="loadLevel(2,'english')">Level 2</button>
             <button class="level-btn" onclick="goHome()">Home</button>
         </div>
     </div>
 
-    <div id="tamil-level-page" class="page hidden"> 
+    <div id="tamil-level-page" class="hidden-elem"> 
         <h1>எழுத்துப்பட்டுவாடா</h1>
         <div class="level-panel">
-            <button class="level-btn" onclick="loadLevel(1)">நிலை 1</button>
-            <button class="level-btn" onclick="loadLevel(2)">நிலை 2</button>
+            <button class="level-btn" onclick="loadLevel(1,'tamil')">நிலை 1</button>
+            <button class="level-btn" onclick="loadLevel(2,'tamil')">நிலை 2</button>
             <button class="level-btn" onclick="goHome()">வீடு</button>
         </div>
     </div>
     
 
-    <div id="english-level-inside-page" class="page hidden">
-        <div class="navigation">
+    
+        <div class="navigation english hidden-elem">
             <button onclick="goHome()">Home</button>
             <button onclick="exitGame()">Exit</button>
             <button onclick="nextLevel()">Next</button>
             <button onclick="goBack()">Back</button>
         </div>
-        <div class="content">
-            <h2 id="sentence">Meaningful Sentence or Slogan</h2>
-            <div class="words">
-                <div class="word-row">
-                    <span class="jumbled-word" id="jumbled-word-1"></span>
-                    <input type="text" id="input-word-1">
-                </div>
-                <div class="word-row">
-                    <span class="jumbled-word" id="jumbled-word-2"></span>
-                    <input type="text" id="input-word-2">
-                </div>
-                <div class="word-row">
-                    <span class="jumbled-word" id="jumbled-word-3"></span>
-                    <input type="text" id="input-word-3">
-                </div>
-                <div class="word-row">
-                    <span class="jumbled-word" id="jumbled-word-4"></span>
-                    <input type="text" id="input-word-4">
-                </div>
-            </div>
-        </div>
-        <div>
-            <button style="height: 50px; width: 70px; margin-top: 10px; margin-left: 15px;" onclick="goSubmit()">Submit</button>
-        </div>
-    </div>
-
-    <div id="tamil-level-inside-page" class="page hidden">
-        <div class="navigation">
+        <div class="navigation tamil hidden-elem">
             <button onclick="goHome()">வீடு</button>
             <button onclick="exitGame()">வெளியேறு</button>
             <button onclick="nextLevel()">அடுத்து</button>
             <button onclick="goBack()">பின்</button>
         </div>
+        <div id="english-level-inside-page" class="hidden-elem">
         <div class="content">
-            <h2 id="sentencex">Meaningful Sentence or Slogan</h2>
+            <h2 id="sentence">Meaningful Sentence or Slogan</h2>
             <div class="words">
                 <div class="word-row">
-                    <span class="jumbled-word" id="jumbled-wordx-1"></span>
-                    <input type="text" id="input-wordx-1">
+                    <span class="jumbled-word" id="jumbled-word-1"></span>
+                        <div class="input-word-1 input-box-container">
+                        </div>
+                </div>  
+                <div class="word-row">
+                    <span class="jumbled-word" id="jumbled-word-2"></span>
+                    <div class="input-word-2 input-box-container">
+                    </div>
                 </div>
                 <div class="word-row">
-                    <span class="jumbled-word" id="jumbled-wordx-2"></span>
-                    <input type="text" id="input-wordx-2">
+                    <span class="jumbled-word" id="jumbled-word-3"></span>
+                    <div class="input-word-3 input-box-container">
+                    </div>
                 </div>
                 <div class="word-row">
-                    <span class="jumbled-word" id="jumbled-wordx-3"></span>
-                    <input type="text" id="input-wordx-3">
-                </div>
-                <div class="word-row">
-                    <span class="jumbled-word" id="jumbled-wordx-4"></span>
-                    <input type="text" id="input-wordx-4">
+                    <span class="jumbled-word" id="jumbled-word-4"></span>
+                    <div class="input-word-4 input-box-container">
+                    </div>
                 </div>
             </div>
         </div>
         <div>
-            <button style="height: 50px; width: 120px; margin-top: 10px; margin-left: 65px;" onclick="goSubmit()">சமர்ப்பிக்கவும்</button>
+            <button style="height: 50px; width: 70px; margin-top: 10px; margin-left: 15px;" onclick="goSubmit()"><span class="submit-english hidden-elem">Submit</span><span class="submit-tamil hidden-elem">சமர்ப்பிக்கவும்</span></button>
         </div>
     </div>
 

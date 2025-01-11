@@ -3,24 +3,32 @@ const levels = {
         1: {
             sentence: "The four jumbled words find then click the submit button complete the proverb / saying 'Think of the devil and ___________'",
             words: ["GIHH", "REAWA", "EPTS", "DELIS"],
-            answers: ["high", "aware", "step", "slide"]
+            circle: [[0,3],[3,4],[1,2],[0,2,4]],
+            answers: ["high", "aware", "step", "slide"],
+            blank: "The four jumbled words find then click the submit button complete the proverb / saying 'Think of the devil and <u>there he is</u>'"
         },
         2: {
-            sentence: "The four jumbled words find then click the submit button complete the slogan 'Liberty, Equality and ___________",
+            sentence: "The four jumbled words find then click the submit button complete the slogan 'Liberty, Equality and ___________'",
             words: ["DENMA", "ERFHAT", "NOIRY", "RHYITT"],
-            answers: ["amend", "father", "irony", "thirty"]
+            circle: [[0,2],[0,2,5],[0,3],[0,3,5]],
+            answers: ["amend", "father", "irony", "thirty"],
+            blank:"The four jumbled words find then click the submit button complete the slogan 'Liberty, Equality and <u>Fraternity</u>'"
         }
     }, 
     tamil:{
         1: {
             sentence: "பாரதியாரின் கவிதையின் தலைப்பை பூர்த்தி செய்யும் வகையில், நான்கு குழப்பமான சொற்களைக் கண்டறிந்த பிறகு, சமர்ப்பி பொத்தானைக் கிளிக் செய்து முடிக்கவும் 'என்று தணியும் இந்த ___________'",
             words: ["சும்நாதர", "பல்ந்த", "குள்கரைதி", "னம்மைதா"],
-            answers: ["நாதசுரம்", "பந்தல்", "குதிரைகள்", "மைதானம்"]
+            circle: [[2,3,4],[1,2],[1,3],[1]],
+            answers: ["நாதசுரம்", "பந்தல்", "குதிரைகள்", "மைதானம்"],
+            blank:"பாரதியாரின் கவிதையின் தலைப்பை பூர்த்தி செய்யும் வகையில், நான்கு குழப்பமான சொற்களைக் கண்டறிந்த பிறகு, சமர்ப்பி பொத்தானைக் கிளிக் செய்து முடிக்கவும் 'என்று தணியும் இந்த சுதந்திர தாகம்'"
         },
         2: {
-            sentence: "பழமொழியை பூர்த்தி செய்யும் வகையில், நான்கு குழப்பமான சொற்களைக் கண்டறிந்த பிறகு, சமர்ப்பி பொத்தானைக் கிளிக் செய்து முடிக்கவும் 'யானைக்கு ஒரு காலம் என்றால் ___________",
+            sentence: "பழமொழியை பூர்த்தி செய்யும் வகையில், நான்கு குழப்பமான சொற்களைக் கண்டறிந்த பிறகு, சமர்ப்பி பொத்தானைக் கிளிக் செய்து முடிக்கவும் 'யானைக்கு ஒரு காலம் என்றால் ___________'",
             words: ["குத்துஒமக்", "ரம்பமனை", "எக்கரும்பூ", "காலம்பர"],
-            answers: ["ஒக்குமத்து", "பனைமரம்", "எருக்கம்பூ", "பலகாரம்"]
+            circle: [[0,1,2],[1,4],[1,4,5],[1,2]],
+            answers: ["ஒக்குமத்து", "பனைமரம்", "எருக்கம்பூ", "பலகாரம்"],
+            blank:"பழமொழியை பூர்த்தி செய்யும் வகையில், நான்கு குழப்பமான சொற்களைக் கண்டறிந்த பிறகு, சமர்ப்பி பொத்தானைக் கிளிக் செய்து முடிக்கவும் 'யானைக்கு ஒரு காலம் என்றால் பூனைக்கும் ஒரு காலம்'"
         }
     }
 };
@@ -28,35 +36,100 @@ const levels = {
 let currentLevel = null;
 let language = "";
 
-function loadLevel(level) {
+function loadLevel(level,language) {
+    if(document.querySelectorAll('.input-box-wrap')){
+        document.querySelectorAll('.input-box-wrap').forEach(elem => {
+            elem.remove();
+        });
+    }
     currentLevel = level;
     document.getElementById('home-page').classList.remove('active');
+    document.getElementById('english-level-inside-page').classList.remove('hidden-elem');
     if(language==="english"){
-        document.getElementById('english-level-inside-page').classList.add('active');
-        document.getElementById('english-level-page').classList.remove('active');
+        let circle = levels[language][level].circle;
+        document.querySelector('.navigation.english').classList.remove('hidden-elem');
+        document.querySelector('.submit-english').classList.remove('hidden-elem');
+        document.querySelector('.submit-tamil').classList.add('hidden-elem');
+        document.getElementById('english-level-page').classList.add('hidden-elem');
         document.getElementById('sentence').textContent = levels[language][level].sentence;
-    levels[language][level].words.forEach((word, index) => {
+
+        levels[language][level].words.forEach((word, index) => {
         document.getElementById(`jumbled-word-${index + 1}`).textContent = word;
-        document.getElementById(`input-word-${index + 1}`).value = "";
-    });
+
+            word.split('').forEach((letter, square) =>{
+                const inputBoxWrap = Object.assign(document.createElement("div"), { className: "input-box-wrap", innerHTML: '<input type="text" class="input-1-box" maxlength="1">' });
+                document.querySelector(`.input-word-${index + 1}`).appendChild(inputBoxWrap);
+
+                if(circle[index].includes(square)) {
+                    inputBoxWrap.classList.add('circle');
+                }
+
+            })
+        });
     } else if(language==="tamil") {
-        document.getElementById('tamil-level-inside-page').classList.add('active');
-        document.getElementById('tamil-level-page').classList.remove('active');
-        document.getElementById('sentencex').textContent = levels[language][level].sentence;
-    levels[language][level].words.forEach((word, index) => {
-        document.getElementById(`jumbled-wordx-${index + 1}`).textContent = word;
-        document.getElementById(`input-wordx-${index + 1}`).value = "";
-    });
+        let circle = levels[language][level].circle;
+        document.getElementById('tamil-level-page').classList.add('hidden-elem');
+        document.querySelector('.navigation.tamil').classList.remove('hidden-elem');
+        document.querySelector('.submit-tamil').classList.remove('hidden-elem');
+        document.querySelector('.submit-english').classList.add('hidden-elem');
+        document.getElementById('sentence').textContent = levels[language][level].sentence;
+
+        levels[language][level].words.forEach((word, index) => {
+        document.getElementById(`jumbled-word-${index + 1}`).textContent = word;
+
+            word.split('').forEach((letter, square) =>{
+                const inputBoxWrap = Object.assign(document.createElement("div"), { className: "input-box-wrap", innerHTML: '<input type="text" class="input-1-box" maxlength="3">' });
+                document.querySelector(`.input-word-${index + 1}`).appendChild(inputBoxWrap);
+
+                if(circle[index].includes(square)) {
+                    inputBoxWrap.classList.add('circle');
+                }
+
+            })
+        });
     }
+
+    document.querySelectorAll('.input-1-box').forEach((elem, index) => {
+        elem.addEventListener("input", (e) => {
+            if (e.key !== "Backspace") {
+                document.querySelectorAll('.input-1-box')[index+1].focus();
+            }
+        });
+    
+        elem.addEventListener("keydown", (e) => {
+            if (e.key === "Backspace") {
+                if (elem.value == ""){
+                    document.querySelectorAll('.input-1-box')[index-1].value="";
+                    document.querySelectorAll('.input-1-box')[index-1].focus();
+                } else {
+                    elem.value = "";
+                }
+            }
+        });
+
+        elem.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowRight") {
+                if (elem !== ""){
+                    document.querySelectorAll('.input-1-box')[index+1].focus();
+                }
+            }
+        });
+        elem.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowLeft") {
+                document.querySelectorAll('.input-1-box')[index-1].focus();
+            }
+        });
+    });
 }
 
 function goHome() {
     currentLevel = null;
     document.getElementById('home-page').classList.add('active');
-    document.getElementById('tamil-level-page').classList.remove('active');
-    document.getElementById('english-level-page').classList.remove('active');
-    document.getElementById('tamil-level-inside-page').classList.remove('active');
-    document.getElementById('english-level-inside-page').classList.remove('active');    
+    document.querySelector('.navigation.tamil').classList.add('hidden-elem');
+    document.querySelector('.navigation.english').classList.add('hidden-elem');
+    document.querySelector('#english-level-page').classList.add('hidden-elem');
+    document.querySelector('#tamil-level-page').classList.add('hidden-elem');
+    document.getElementById('english-level-inside-page').classList.add('hidden-elem');    
 }
 
 function exitGame() {
@@ -71,7 +144,7 @@ function exitGame() {
 function nextLevel() {
     const next = currentLevel + 1;
     if (levels[language][next]) {
-        loadLevel(next);
+        loadLevel(next,language);
     } else {
         if(language==="english"){
             alert("Congratulations! You completed all levels.");
@@ -85,7 +158,7 @@ function nextLevel() {
 function goBack() {
     const previous = currentLevel - 1;
     if (levels[language][previous]) {
-        loadLevel(previous);
+        loadLevel(previous,language);
     } else {
         if(language==="english"){
             alert("You are already at the first level.");
@@ -132,20 +205,38 @@ function goSubmit() {
 
     const inputValues = [];
     for (let i = 0; i < inputFields.length; i++) {
-        const inputValue = document.getElementById(inputFields[i]).value.trim();
+        let allValues = document.querySelectorAll(`.${inputFields[i]} .input-box-wrap .input-1-box`);
+        let inputValue = "";
+        allValues.forEach(input =>{
+            inputValue += String(input.value);
+        });
+        // const inputValue = document.getElementById(inputFields[i]).value.trim();
         if (!inputValue) return alert(errorMessage);
         inputValues.push(language === "english" ? inputValue.toLowerCase() : inputValue);
     }
 
     const data = unmatchCount(lst, inputValues);
     
-    if (data['matchedIndices']) {
-        if (data['matchedIndices'].length === lst.length) {
-            alert(completionMessage);
-        } else {
-            alert(unmatchedMessage.replace("{indices}", data["unmatchedIndices"].join(',')));
+    if (data.matchedIndices.length === lst.length) {
+        if (language === "english") {
+            document.getElementById('sentence').innerHTML = levels[language][currentLevel].blank;
+        } else if (language === "tamil") {
+            document.getElementById('sentencex').innerHTML = levels[language][currentLevel].blank;
         }
+        alert(completionMessage);
+    } else if (data.unmatchedIndices.length > 0) {
+        if (language === "english") {
+            document.getElementById('sentence').innerHTML = levels[language][currentLevel].sentence;
+        } else if (language === "tamil") {
+            document.getElementById('sentencex').innerHTML = levels[language][currentLevel].sentence;
+        }
+        alert(unmatchedMessage.replace("{indices}", data.unmatchedIndices.join(',')));
     } else {
+        if (language === "english") {
+            document.getElementById('sentence').innerHTML = levels[language][currentLevel].sentence;
+        } else if (language === "tamil") {
+            document.getElementById('sentencex').innerHTML = levels[language][currentLevel].sentence;
+        }
         alert(allUnmatchedMessage);
     }
 }
@@ -153,12 +244,12 @@ function goSubmit() {
 
 function Tamil(){
     document.getElementById('home-page').classList.remove('active');
-    document.getElementById('tamil-level-page').classList.add('active');
+    document.getElementById('tamil-level-page').classList.remove('hidden-elem');
     language = "tamil";
 }
 
 function English(){
     document.getElementById('home-page').classList.remove('active');
-    document.getElementById('english-level-page').classList.add('active');
+    document.getElementById('english-level-page').classList.remove('hidden-elem');
     language = "english";
 }
