@@ -189,7 +189,7 @@ function goSubmit() {
     const lst = levels[language][currentLevel].answers;
     const inputFields = language === "english"
         ? ['input-word-1', 'input-word-2', 'input-word-3', 'input-word-4']
-        : ['input-wordx-1', 'input-wordx-2', 'input-wordx-3', 'input-wordx-4'];
+        : ['input-word-1', 'input-word-2', 'input-word-3', 'input-word-4'];
 
     const errorMessage = language === "english" 
         ? "Find all words!" 
@@ -218,7 +218,6 @@ function goSubmit() {
         if (!inputValue) return alert(errorMessage);
         inputValues.push(language === "english" ? inputValue.toLowerCase() : inputValue);
     }
-    console.log(inputValues,"&&&&&&&&");
     const data = unmatchCount(lst, inputValues);
     
     if (data.matchedIndices.length === lst.length) {
