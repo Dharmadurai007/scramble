@@ -214,7 +214,6 @@ function goSubmit() {
         allValues.forEach(input =>{
             inputValue += String(input.value);
         });
-        // const inputValue = document.getElementById(inputFields[i]).value.trim();
         if (!inputValue) return alert(errorMessage);
         inputValues.push(language === "english" ? inputValue.toLowerCase() : inputValue);
     }
