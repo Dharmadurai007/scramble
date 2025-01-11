@@ -1,18 +1,18 @@
 const levels = {
     english:{
         1: {
-            sentence: "The four jumbled words find then click the submit button complete the proverb / saying 'Think of the devil and ___________'",
+            sentence: "<u style='color: red;'>Use the letters in the circle.</u> The four jumbled words find then click the submit button complete the proverb / saying 'Think of the devil and ___________'",
             words: ["GIHH", "REAWA", "EPTS", "DELIS"],
             circle: [[0,3],[3,4],[1,2],[0,2,4]],
             answers: ["high", "aware", "step", "slide"],
-            blank: "The four jumbled words find then click the submit button complete the proverb / saying 'Think of the devil and <u>there he is</u>'"
+            blank: "<u style='color: red;'>Use the letters in the circle.</u> The four jumbled words find then click the submit button complete the proverb / saying 'Think of the devil and <u style='color: green;'>there he is</u>'"
         },
         2: {
-            sentence: "The four jumbled words find then click the submit button complete the slogan 'Liberty, Equality and ___________'",
+            sentence: "<u style='color: red;'>Use the letters in the circle.</u> The four jumbled words find then click the submit button complete the slogan 'Liberty, Equality and ___________'",
             words: ["DENMA", "ERFHAT", "NOIRY", "RHYITT"],
             circle: [[0,2],[0,2,5],[0,3],[0,3,5]],
             answers: ["amend", "father", "irony", "thirty"],
-            blank:"The four jumbled words find then click the submit button complete the slogan 'Liberty, Equality and <u>Fraternity</u>'"
+            blank:"<u style='color: red;'>Use the letters in the circle.</u> The four jumbled words find then click the submit button complete the slogan 'Liberty, Equality and <u style='color: green;'>Fraternity</u>'"
         }
     }, 
     tamil:{
@@ -51,7 +51,7 @@ function loadLevel(level,language) {
         document.querySelector('.submit-english').classList.remove('hidden-elem');
         document.querySelector('.submit-tamil').classList.add('hidden-elem');
         document.getElementById('english-level-page').classList.add('hidden-elem');
-        document.getElementById('sentence').textContent = levels[language][level].sentence;
+        document.getElementById('sentence').innerHTML = levels[language][level].sentence;
 
         levels[language][level].words.forEach((word, index) => {
         document.getElementById(`jumbled-word-${index + 1}`).textContent = word;
@@ -72,7 +72,7 @@ function loadLevel(level,language) {
         document.querySelector('.navigation.tamil').classList.remove('hidden-elem');
         document.querySelector('.submit-tamil').classList.remove('hidden-elem');
         document.querySelector('.submit-english').classList.add('hidden-elem');
-        document.getElementById('sentence').textContent = levels[language][level].sentence;
+        document.getElementById('sentence').innerHTML = levels[language][level].sentence;
 
         levels[language][level].words.forEach((word, index) => {
         document.getElementById(`jumbled-word-${index + 1}`).textContent = word;
